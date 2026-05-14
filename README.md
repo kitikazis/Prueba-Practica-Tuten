@@ -2,6 +2,10 @@
 
 Una aplicación Ionic/Angular para gestión de reservas (bookings) con autenticación de usuario y filtrado dinámico.
 
+## 📄 Documentación Adjunta
+
+Puedes consultar el enunciado completo de la prueba técnica aquí:
+* [PDF de Prueba Técnica (GitHub)](https://github.com/user-attachments/files/27739911/Prueba.Tuten.-Angular.6.pdf)
 ## 📋 Requisitos Previos
 
 - **Node.js** v18+ y npm

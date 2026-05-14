@@ -230,5 +230,5 @@ Para reportar problemas o sugerencias, contacta al equipo de desarrollo.
 
 ---
 
-**Última actualización:** Diciembre 2026  
+**Última actualización:** 13 de Mayo 2026  
 **Versión:** 1.0.0

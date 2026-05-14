@@ -1,0 +1,21 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Login Tuten</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-item>
+    <ion-label position="floating">Usuario</ion-label>
+    <ion-input type="email" [(ngModel)]="loginData.user"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label position="floating">Contraseña</ion-label>
+    <ion-input type="password" [(ngModel)]="loginData.pass"></ion-input>
+  </ion-item>
+
+  <ion-button expand="block" (click)="onLogin()" style="margin-top: 20px">
+    Ingresar
+  </ion-button>
+</ion-content>

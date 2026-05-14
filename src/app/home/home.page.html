@@ -1,0 +1,109 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>Home - Tuten App</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Bookings</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <div id="container">
+    <!-- Usuario autenticado -->
+    <div *ngIf="isLoggedIn" class="user-info">
+      <p><strong>Usuario:</strong> {{ user }}</p>
+      <ion-button color="danger" expand="block" (click)="logout()">
+        Cerrar Sesión
+      </ion-button>
+    </div>
+
+    <!-- Botón de login si no está autenticado -->
+    <div *ngIf="!isLoggedIn" class="login-section">
+      <p>No has iniciado sesión</p>
+      <ion-button color="success" expand="block" (click)="goToLogin()">
+        Ingresar Login
+      </ion-button>
+    </div>
+
+    <!-- Filtros -->
+    <div class="filters-section" *ngIf="isLoggedIn">
+      <h3>Filtros</h3>
+
+      <ion-item>
+        <ion-label position="floating">Buscar por BookingId</ion-label>
+        <ion-input
+          [(ngModel)]="bookingIdFilter"
+          (ionChange)="onFilterChange()"
+          placeholder="ej: BK001"
+        ></ion-input>
+      </ion-item>
+
+      <div class="price-filters">
+        <ion-item>
+          <ion-label position="floating">Precio Mínimo (>=)</ion-label>
+          <ion-input
+            type="number"
+            [(ngModel)]="priceMinFilter"
+            (ionChange)="onFilterChange()"
+            placeholder="ej: 30000"
+          ></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label position="floating">Precio Máximo (<=)</ion-label>
+          <ion-input
+            type="number"
+            [(ngModel)]="priceMaxFilter"
+            (ionChange)="onFilterChange()"
+            placeholder="ej: 100000"
+          ></ion-input>
+        </ion-item>
+      </div>
+
+      <ion-button color="medium" expand="block" (click)="clearFilters()">
+        Limpiar Filtros
+      </ion-button>
+    </div>
+
+    <!-- Grilla de Bookings -->
+    <div class="bookings-section" *ngIf="isLoggedIn">
+      <h3>Listado de Bookings ({{ filteredBookings.length }})</h3>
+
+      <div *ngIf="filteredBookings.length === 0" class="no-results">
+        <p>No hay bookings que coincidan con los filtros</p>
+      </div>
+
+      <ion-card *ngFor="let booking of filteredBookings" class="booking-card">
+        <ion-card-content>
+          <div class="booking-row">
+            <span class="booking-label">BookingId:</span>
+            <span class="booking-value">{{ booking.bookingId }}</span>
+          </div>
+          <div class="booking-row">
+            <span class="booking-label">Cliente:</span>
+            <span class="booking-value"
+              >{{ booking.firstName }} {{ booking.lastName }}</span
+            >
+          </div>
+          <div class="booking-row">
+            <span class="booking-label">Fecha de Creación:</span>
+            <span class="booking-value">{{ booking.bookingTime }}</span>
+          </div>
+          <div class="booking-row">
+            <span class="booking-label">Dirección:</span>
+            <span class="booking-value">{{ booking.streetAddress }}</span>
+          </div>
+          <div class="booking-row">
+            <span class="booking-label">Precio:</span>
+            <span class="booking-value booking-price"
+              >${{ booking.bookingPrice | number }}</span
+            >
+          </div>
+        </ion-card-content>
+      </ion-card>
+    </div>
+  </div>
+</ion-content>
